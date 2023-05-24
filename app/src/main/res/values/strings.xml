@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Aston Intensiv 5</string>
+    <string name="hint_contact_name">Name</string>
+    <string name="hint_contact_surname">Surname</string>
+    <string name="hint_contact_phone">Phone number</string>
+    <string name="button_text_contact_save">Save</string>
+    <string name="template_full_name">%1$s %2$s</string>
+</resources>
