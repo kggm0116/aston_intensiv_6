@@ -1,4 +1,4 @@
-package ru.kggm.aston_intensiv_5.contact_list
+package ru.kggm.aston_intensiv_6.contact_list
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import ru.kggm.aston_intensiv_5.ContactsViewModel
-import ru.kggm.aston_intensiv_5.R
-import ru.kggm.aston_intensiv_5.contact_details.ContactDetailsFragment
-import ru.kggm.aston_intensiv_5.databinding.FragmentContactListBinding
-import ru.kggm.aston_intensiv_5.databinding.LayoutContactBinding
-import ru.kggm.aston_intensiv_5.entities.Contact
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+import ru.kggm.aston_intensiv_6.ContactsViewModel
+import ru.kggm.aston_intensiv_6.R
+import ru.kggm.aston_intensiv_6.contact_details.ContactDetailsFragment
+import ru.kggm.aston_intensiv_6.contact_list.recycler.ContactListAdapter
+import ru.kggm.aston_intensiv_6.databinding.FragmentContactListBinding
+import ru.kggm.aston_intensiv_6.entities.Contact
 
 class ContactListFragment : Fragment() {
     private lateinit var binding: FragmentContactListBinding
@@ -26,28 +28,20 @@ class ContactListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        populateContacts()
+        initializeRecycler()
     }
 
-    private fun populateContacts() {
-        binding.layoutContacts.removeAllViews()
-        ContactsViewModel.contacts.forEach { contact ->
-            binding.layoutContacts.addView(
-                getContactView(contact)
-            )
+    private lateinit var contactsAdapter: ContactListAdapter
+    private fun initializeRecycler() {
+        contactsAdapter = ContactListAdapter()
+        binding.recyclerContacts.adapter = contactsAdapter
+        viewLifecycleOwner.lifecycleScope.launch {
+            ContactsViewModel.contacts.collect {
+                contactsAdapter.submitList(it)
+            }
         }
-    }
-
-    private fun getContactView(contact: Contact): View {
-        val binding = LayoutContactBinding.inflate(layoutInflater)
-        binding.textFullName.text = getString(
-            R.string.template_full_name,
-            contact.name,
-            contact.surname
-        )
-        binding.textPhone.text = contact.phone
-        binding.root.setOnClickListener { openDetails(contact) }
-        return binding.root
+        contactsAdapter.onItemClicked = { openDetails(it) }
+        contactsAdapter.onItemLongClicked = { remove(it) }
     }
 
     private fun openDetails(contact: Contact) {
@@ -66,5 +60,9 @@ class ContactListFragment : Fragment() {
             .replace(R.id.fragment_container_contacts, detailsFragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun remove(contact: Contact) {
+        ContactsViewModel.remove(contact)
     }
 }

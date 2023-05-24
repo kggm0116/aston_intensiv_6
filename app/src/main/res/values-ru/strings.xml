@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Астон интенсив 5</string>
+    <string name="app_name">Астон интенсив 6</string>
     <string name="hint_contact_name">Имя</string>
     <string name="hint_contact_surname">Фамилия</string>
     <string name="hint_contact_phone">Номер телефона</string>

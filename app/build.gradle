@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'ru.kggm.aston_intensiv_5'
+    namespace 'ru.kggm.aston_intensiv_6'
     compileSdk 33
 
     defaultConfig {
-        applicationId "ru.kggm.aston_intensiv_5"
+        applicationId "ru.kggm.aston_intensiv_6"
         minSdk 24
         targetSdk 33
         versionCode 1
@@ -38,4 +38,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+    implementation "androidx.fragment:fragment-ktx:1.5.7"
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3"
+    implementation 'io.coil-kt:coil:2.3.0'
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

@@ -1,9 +1,9 @@
-package ru.kggm.aston_intensiv_5
+package ru.kggm.aston_intensiv_6
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ru.kggm.aston_intensiv_5.databinding.ActivityContactsBinding
+import ru.kggm.aston_intensiv_6.databinding.ActivityContactsBinding
 
 class ContactsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityContactsBinding

@@ -1,4 +1,4 @@
-package ru.kggm.aston_intensiv_5.contact_details
+package ru.kggm.aston_intensiv_6.contact_details
 
 import android.os.Bundle
 import android.os.ParcelUuid
@@ -7,8 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import ru.kggm.aston_intensiv_5.ContactsViewModel
-import ru.kggm.aston_intensiv_5.databinding.FragmentContactDetailsBinding
+import coil.load
+import ru.kggm.aston_intensiv_6.ContactsViewModel
+import ru.kggm.aston_intensiv_6.databinding.FragmentContactDetailsBinding
 
 class ContactDetailsFragment : Fragment() {
     private lateinit var binding: FragmentContactDetailsBinding
@@ -39,16 +40,19 @@ class ContactDetailsFragment : Fragment() {
     }
 
     private fun populate(savedInstanceState: Bundle?) {
-        binding.inputTextName.setText(
-            savedInstanceState?.getString(STATE_ARG_NAME_TEXT) ?: contact.name
-        )
-        binding.inputTextSurname.setText(
-            savedInstanceState?.getString(STATE_ARG_SURNAME_TEXT) ?: contact.surname
-        )
-        binding.inputTextPhone.setText(
-            savedInstanceState?.getString(STATE_ARG_PHONE_TEXT) ?: contact.phone
-        )
-        binding.buttonContactSave.setOnClickListener { onSaveButtonClick() }
+        binding.apply {
+            inputTextName.setText(
+                savedInstanceState?.getString(STATE_ARG_NAME_TEXT) ?: contact.name
+            )
+            inputTextSurname.setText(
+                savedInstanceState?.getString(STATE_ARG_SURNAME_TEXT) ?: contact.surname
+            )
+            inputTextPhone.setText(
+                savedInstanceState?.getString(STATE_ARG_PHONE_TEXT) ?: contact.phone
+            )
+            image.load(contact.imageUrl) { crossfade(true) }
+            buttonContactSave.setOnClickListener { onSaveButtonClick() }
+        }
     }
 
     private fun onSaveButtonClick() {

@@ -1,4 +1,4 @@
-package ru.kggm.aston_intensiv_5.entities
+package ru.kggm.aston_intensiv_6.entities
 
 import android.os.ParcelUuid
 import java.util.UUID
@@ -8,5 +8,6 @@ data class Contact(
     val name: String,
     val surname: String,
     val phone: String,
-    val id: Long = Random.nextLong()
+    val imageUrl: String,
+    val id: Long = Random.nextLong(),
 )
