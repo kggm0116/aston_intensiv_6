@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="style_image_theme_based_tint">
+        <item name="tint">?attr/colorOnBackground</item>
+    </style>
+</resources>
