@@ -4,4 +4,5 @@
     <dimen name="dimen_contact_details_image_max_size">128dp</dimen>
     <dimen name="text_size_large">24sp</dimen>
     <dimen name="text_size_medium">18sp</dimen>
+    <dimen name="dimen_contact_recycler_divider_margin">8dp</dimen>
 </resources>

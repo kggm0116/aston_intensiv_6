@@ -2,10 +2,10 @@ package ru.kggm.aston_intensiv_6.contact_list.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import coil.load
-import com.squareup.picasso.Picasso
 import ru.kggm.aston_intensiv_6.R
 import ru.kggm.aston_intensiv_6.databinding.LayoutContactBinding
 import ru.kggm.aston_intensiv_6.entities.Contact
@@ -28,9 +28,7 @@ class ContactListAdapter(
         val item = getItem(position)
         holder.bind(item)
         holder.binding.root.setDebouncedClickListener { onItemClicked(item) }
-        holder.binding.root.setOnLongClickListener {
-            onItemLongClicked(item); true
-        }
+        holder.binding.root.setOnLongClickListener { onItemLongClicked(item); true }
     }
 
     class ContentViewHolder(val binding: LayoutContactBinding) : ViewHolder(binding.root) {
@@ -43,6 +41,7 @@ class ContactListAdapter(
                 )
                 textPhone.text = contact.phone
                 image.load(contact.imageUrl) { crossfade(true) }
+                image.clipToOutline = true
             }
         }
     }

@@ -12,6 +12,7 @@ import ru.kggm.aston_intensiv_6.ContactsViewModel
 import ru.kggm.aston_intensiv_6.R
 import ru.kggm.aston_intensiv_6.contact_details.ContactDetailsFragment
 import ru.kggm.aston_intensiv_6.contact_list.recycler.ContactListAdapter
+import ru.kggm.aston_intensiv_6.contact_list.recycler.ContactRecyclerDivider
 import ru.kggm.aston_intensiv_6.databinding.FragmentContactListBinding
 import ru.kggm.aston_intensiv_6.entities.Contact
 
@@ -31,15 +32,17 @@ class ContactListFragment : Fragment() {
         initializeRecycler()
     }
 
-    private lateinit var contactsAdapter: ContactListAdapter
+    private val contactsAdapter by lazy { ContactListAdapter() }
     private fun initializeRecycler() {
-        contactsAdapter = ContactListAdapter()
         binding.recyclerContacts.adapter = contactsAdapter
         viewLifecycleOwner.lifecycleScope.launch {
             ContactsViewModel.contacts.collect {
                 contactsAdapter.submitList(it)
             }
         }
+        binding.recyclerContacts.addItemDecoration(
+            ContactRecyclerDivider(requireContext())
+        )
         contactsAdapter.onItemClicked = { openDetails(it) }
         contactsAdapter.onItemLongClicked = { remove(it) }
     }

@@ -51,6 +51,7 @@ class ContactDetailsFragment : Fragment() {
                 savedInstanceState?.getString(STATE_ARG_PHONE_TEXT) ?: contact.phone
             )
             image.load(contact.imageUrl) { crossfade(true) }
+            image.clipToOutline = true
             buttonContactSave.setOnClickListener { onSaveButtonClick() }
         }
     }

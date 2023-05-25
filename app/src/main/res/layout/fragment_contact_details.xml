@@ -15,14 +15,15 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/margin_medium"
-            tools:src="@drawable/icon_person"
+            android:background="@drawable/drawable_contact_photo_large_background"
             app:layout_constraintBottom_toTopOf="@id/input_layout_name"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintWidth_max="300dp" />
+            app:layout_constraintWidth_max="300dp"
+            tools:src="@drawable/icon_person" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_name"
